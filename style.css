@@ -1,0 +1,672 @@
+
+/* ===================================
+   MARS OUTPOST COMMAND
+   INTERFACE DESIGN
+=================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #101820;
+    color: #e6edf3;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid #e66b35;
+    padding-bottom: 20px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    color: #9ba7b4;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+header h1 {
+    color: #e66b35;
+    letter-spacing: 4px;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+header p {
+    color: #9ba7b4;
+    letter-spacing: 5px;
+    font-size: 12px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+h2 {
+    letter-spacing: 2px;
+}
+
+.small-label {
+    color: #e66b35;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* MISSION HEADING */
+
+.mission-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #344956;
+    padding-bottom: 15px;
+}
+
+.mission-heading h2 {
+    color: #e66b35;
+    margin: 8px 0;
+}
+
+.mission-status {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    gap: 8px;
+    font-size: 11px;
+    color: #55d6be;
+    letter-spacing: 1px;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.panel, .mission {
+    background: #1c2b36;
+    border: 1px solid #344956;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.panel {
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+.panel:hover {
+    border-color: #e66b35;
+}
+
+.panel h3 {
+    color: #9ba7b4;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.panel p {
+    color: #55d6be;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* RESOURCE METERS */
+
+.meter {
+    height: 5px;
+    background: #344956;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    width: 50%;
+    background: #55d6be;
+    transition: width 0.5s ease;
+}
+
+/* MAIN MISSION */
+
+.mission {
+    margin-top: 25px;
+    line-height: 1.7;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #344956;
+    padding-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-size: 17px;
+}
+
+#alert {
+    font-size: 10px;
+    color: #55d6be;
+    letter-spacing: 1px;
+}
+
+/* TRANSMISSION */
+
+.transmission {
+    background: #14232e;
+    border-left: 3px solid #e66b35;
+    padding: 20px;
+    margin: 20px 0;
+    min-height: 180px;
+}
+
+.transmission-header {
+    display: flex;
+    justify-content: space-between;
+    color: #9ba7b4;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.transmission h3 {
+    color: #e66b35;
+    font-size: 15px;
+    margin-top: 25px;
+}
+
+#message {
+    line-height: 1.8;
+}
+
+.dialogue {
+    color: #55d6be;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* SCIENTIFIC INFORMATION */
+
+.science-box {
+    background: #202e36;
+    border: 1px solid #455c6b;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.science-box p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.science-box small {
+    color: #9ba7b4;
+    font-size: 10px;
+}
+
+/* DECISION BUTTONS */
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+button {
+    background: #e66b35;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+button:hover {
+    background: #ff8955;
+}
+
+.choice-button {
+    text-align: left;
+    background: #263b49;
+    border: 1px solid #455c6b;
+}
+
+.choice-button:hover:not(:disabled) {
+    background: #e66b35;
+}
+
+.choice-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* SECONDARY PANELS */
+
+.lower-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.information-panel {
+    text-align: left;
+}
+
+.information-panel p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e6edf3;
+}
+
+/* EVALUATION */
+
+#evaluation {
+    border-top: 2px solid #e66b35;
+    margin-top: 30px;
+}
+
+#evaluation h2 {
+    color: #e66b35;
+}
+
+#final-stats {
+    background: #14232e;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#final-stats p {
+    color: #55d6be;
+    font-size: 14px;
+}
+
+/* GENERAL */
+
+.hidden {
+    display: none !important;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid #344956;
+    padding-top: 20px;
+    color: #687c89;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lower-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .header-top {
+        font-size: 8px;
+    }
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    .mission-heading {
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+
+/* ===================================
+   ATMOSPHERIC INTELLIGENCE / NASA DATA
+=================================== */
+
+.intelligence-panel {
+    margin-top: 25px;
+}
+
+.intelligence-panel .section-heading h2 {
+    font-size: 17px;
+    color: #e66b35;
+}
+
+#mcs-status {
+    color: #e6b84b;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-align: right;
+}
+
+.intelligence-intro {
+    color: #c4d0d8;
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 760px;
+}
+
+.mcs-reading {
+    background: #14232e;
+    border: 1px solid #344956;
+    border-radius: 6px;
+    padding: 18px;
+    margin-top: 18px;
+}
+
+.mcs-reading-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.mcs-primary-reading,
+.mcs-data-item {
+    background: #1c2b36;
+    border: 1px solid #344956;
+    border-radius: 5px;
+    padding: 13px;
+    min-width: 0;
+}
+
+.mcs-primary-reading {
+    border-left: 3px solid #e66b35;
+}
+
+.mcs-data-label {
+    display: block;
+    color: #9ba7b4;
+    font-size: 9px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.mcs-primary-reading strong {
+    display: block;
+    color: #55d6be;
+    font-size: 25px;
+    margin-bottom: 3px;
+}
+
+.mcs-primary-reading > span:last-child {
+    color: #e6edf3;
+    font-size: 13px;
+}
+
+.mcs-data-item strong {
+    display: block;
+    color: #e6edf3;
+    font-size: 17px;
+    overflow-wrap: anywhere;
+}
+
+.mcs-location {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    margin-top: 15px;
+    color: #9ba7b4;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.mcs-location b {
+    color: #55d6be;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+.mcs-chart-section {
+    margin-top: 22px;
+}
+
+.mcs-chart-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.mcs-chart-heading h3 {
+    color: #e6edf3;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.mcs-chart-heading span {
+    color: #9ba7b4;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.mcs-chart {
+    background: #14232e;
+    border: 1px solid #344956;
+    border-radius: 6px;
+    padding: 12px 10px 5px;
+    overflow: hidden;
+}
+
+.mcs-chart svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.chart-grid-line {
+    stroke: #344956;
+    stroke-width: 1;
+    stroke-dasharray: 3 5;
+}
+
+.chart-axis-line {
+    stroke: #9ba7b4;
+    stroke-width: 1.2;
+}
+
+.chart-axis-label {
+    fill: #9ba7b4;
+    font-size: 10px;
+}
+
+.chart-axis-title {
+    fill: #55d6be;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.temperature-line {
+    fill: none;
+    stroke: #e66b35;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.chart-caption {
+    color: #9ba7b4;
+    font-size: 10px;
+    margin: 3px 8px 8px;
+}
+
+.mcs-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+#mcs-next-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+#mcs-profile-count {
+    color: #9ba7b4;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-align: right;
+}
+
+.mcs-caution {
+    color: #9ba7b4;
+    font-size: 10px;
+    line-height: 1.6;
+    border-top: 1px solid #344956;
+    margin-top: 18px;
+    padding-top: 13px;
+}
+
+.mcs-mission-note {
+    color: #b8d7d1;
+    background: #14232e;
+    border-left: 3px solid #55d6be;
+    padding: 12px;
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+    .mcs-reading-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mcs-chart-heading,
+    .mcs-controls {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #mcs-profile-count {
+        text-align: left;
+    }
+
+    #mcs-status {
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 400px) {
+    .mcs-reading-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mcs-location {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* CHEMIN SCIENTIFIC ANALYSIS */
+
+.chemin-panel {
+    background-color: #1c2b36;
+    border: 1px solid #55d6be;
+    padding: 22px;
+    margin-top: 25px;
+    border-radius: 8px;
+}
+
+.chemin-panel h2 {
+    color: #55d6be;
+    margin-bottom: 15px;
+}
+
+.chemin-panel h3 {
+    color: #e66b35;
+    margin-top: 25px;
+}
+
+.chemin-panel p {
+    line-height: 1.6;
+    color: #c8d5dc;
+}
+
+#chemin-chart {
+    display: block;
+    width: 100%;
+    height: 280px;
+    margin: 20px 0;
+}
+
+#chemin-rda-details {
+    font-size: 13px;
+    color: #55d6be;
+}
+
+.mineral-row {
+    margin: 16px 0;
+}
+
+.mineral-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.mineral-bar {
+    height: 12px;
+    background: #344956;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.mineral-fill {
+    height: 100%;
+    background: #55d6be;
+    border-radius: 8px;
+}
+
+.mineral-error {
+    color: #a9bac4;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.chemin-note {
+    background: #263b46;
+    padding: 12px;
+    border-left: 3px solid #e66b35;
+    margin-top: 20px;
+}
