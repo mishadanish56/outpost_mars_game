@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars Outpost Command</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="header-top">
+        <span>NASA DEEP SPACE OPERATIONS</span>
+        <span id="connection">● CONNECTION ESTABLISHED</span>
+    </div>
+
+    <h1>MARS OUTPOST COMMAND</h1>
+    <p>ARES RESEARCH STATION</p>
+</header>
+
+<main>
+
+    <section class="mission-heading">
+        <div>
+            <span class="small-label">CURRENT MISSION</span>
+            <h2 id="sol">SOL 01</h2>
+        </div>
+        <div class="mission-status">
+            <span id="status">AWAITING COMMAND</span>
+            <span id="progress">MISSION 01 / 03</span>
+        </div>
+    </section>
+
+    <!-- OUTPOST RESOURCE DASHBOARD -->
+
+    <section class="dashboard">
+
+        <div class="panel">
+            <h3>OXYGEN</h3>
+            <p id="oxygen">92%</p>
+            <div class="meter">
+                <div id="oxygen-bar" class="meter-fill"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>POWER</h3>
+            <p id="power">78%</p>
+            <div class="meter">
+                <div id="power-bar" class="meter-fill"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>HABITAT</h3>
+            <p id="habitat">96%</p>
+            <div class="meter">
+                <div id="habitat-bar" class="meter-fill"></div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>CREW WELLBEING</h3>
+            <p id="crew">84%</p>
+            <div class="meter">
+                <div id="crew-bar" class="meter-fill"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- REAL ARCHIVED NASA DATA -->
+
+    <section class="mission intelligence-panel">
+        <div class="section-heading">
+            <h2>ATMOSPHERIC INTELLIGENCE</h2>
+            <span id="mcs-status">LOADING ARCHIVE...</span>
+        </div>
+
+        <p class="intelligence-intro">
+            Examine an archived Mars Climate Sounder profile from NASA's
+            Mars Reconnaissance Orbiter. Each profile contains atmospheric
+            measurements at different altitudes.
+        </p>
+
+        <div id="mcs-reading" class="mcs-reading">
+            Preparing archived observations...
+        </div>
+
+        <div class="mcs-chart-section">
+            <div class="mcs-chart-heading">
+                <h3>VERTICAL TEMPERATURE PROFILE</h3>
+                <span>TEMPERATURE (K) / ALTITUDE (KM)</span>
+            </div>
+            <div id="mcs-chart" class="mcs-chart">
+                The graph will appear when the archive has loaded.
+            </div>
+        </div>
+
+        <div class="mcs-controls">
+            <button id="mcs-next-button" type="button" onclick="showMCSObservation()" disabled>
+                LOAD ANOTHER PROFILE ↻
+            </button>
+            <span id="mcs-profile-count">Waiting for data...</span>
+        </div>
+
+        <p class="mcs-caution">
+            ARCHIVE NOTE: These are historical orbital observations from
+            24 September 2006, not live weather data or measurements from
+            ARES Research Station. Profiles may come from different
+            locations on Mars.
+        </p>
+    </section>
+
+    <!-- MAIN MISSION AREA -->
+
+    <section class="mission">
+
+        <div class="section-heading">
+            <h2>MISSION CONTROL</h2>
+            <span id="alert">SYSTEMS NOMINAL</span>
+        </div>
+
+        <div class="transmission">
+            <div class="transmission-header">
+                <span>INCOMING TRANSMISSION</span>
+                <span id="timestamp">ARES // SOL 01</span>
+            </div>
+
+            <h3 id="event-title">Awaiting mission briefing</h3>
+
+            <p id="message">
+                Commander, your shift is ready.
+                Initialise the mission to receive your briefing.
+            </p>
+
+            <p id="dialogue" class="dialogue"></p>
+        </div>
+
+        <div id="science-box" class="science-box hidden">
+            <span class="small-label">SCIENTIFIC CONTEXT</span>
+            <p id="science-info"></p>
+            <small id="science-source"></small>
+            <p id="mcs-mission-note" class="mcs-mission-note hidden"></p>
+        </div>
+
+        <section id="chemin-panel" class="chemin-panel hidden">
+
+            <h2>CHEMIN // MARTIAN SOIL ANALYSIS</h2>
+
+            <p>
+                CheMin is a scientific instrument on NASA's Curiosity rover.
+                It uses X-rays to help scientists discover which minerals
+                are inside Martian rocks and soil.
+            </p>
+
+            <h3>1. X-RAY DIFFRACTION PATTERN</h3>
+
+            <p>
+                The graph shows how strongly the soil sample scattered
+                X-rays at different angles. The peaks are clues that
+                scientists use to identify minerals.
+            </p>
+
+            <canvas id="chemin-chart"></canvas>
+
+            <p id="chemin-rda-details">Loading diffraction measurements...</p>
+
+            <h3>2. MINERALS FOUND IN THE SAMPLE</h3>
+
+            <p>
+                These are the minerals identified in this particular
+                Martian soil sample. The percentages are scientific estimates.
+            </p>
+
+            <div id="chemin-minerals"></div>
+
+            <p class="chemin-note">
+                What does the error mean? Scientists cannot measure
+                everything perfectly. The error gives an indication of
+                the uncertainty in each mineral estimate.
+            </p>
+
+        </section>
+
+    
+
+        <div id="choices" class="choices"></div>
+
+        <button id="start-button" onclick="startMission()">
+            INITIALISE MISSION →
+        </button>
+
+        <button id="next-button" class="hidden" onclick="nextMission()">
+            CONTINUE TO NEXT SOL →
+        </button>
+
+    </section>
+
+    <!-- SECONDARY MONITORING INFORMATION -->
+
+    <section class="lower-dashboard">
+
+        <div class="panel information-panel">
+            <h3>ENVIRONMENTAL MONITORING</h3>
+            <p id="environment">Atmospheric conditions stable.</p>
+        </div>
+
+        <div class="panel information-panel">
+            <h3>CREW COMMUNICATIONS</h3>
+            <p id="crew-log">No new messages.</p>
+        </div>
+
+    </section>
+
+    <section id="evaluation" class="mission hidden">
+        <h2>END OF MISSION REPORT</h2>
+        <p id="evaluation-message"></p>
+        <div id="final-stats"></div>
+        <button onclick="restartMission()">RESTART MISSION ↻</button>
+    </section>
+
+    <footer>
+        <p>ARES RESEARCH STATION // MARS OPERATIONS</p>
+        <p>SIMULATED MISSION DATA // SCIENTIFIC REFERENCES PROVIDED</p>
+    </footer>
+
+</main>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
